@@ -1,10 +1,10 @@
-# fastapi-gpt-websocket-chat
+# 🦦 fastapi-gpt-websocket-chat 🦦
 
 A Proof of Concept (PoC) that leverages websockets and HTTP streaming to relay OpenAI's GPT chat completions in real-time using the FastAPI framework. While FastAPI is used here, any API framework supporting websockets and HTTP streaming can be adapted for this purpose.
 
-## Docker Deployment
+## Docker Deployment 🐳
 
-### Production Setup
+### Production Setup 🚀
 
 1. **Build the Docker Image:**
 
@@ -22,7 +22,7 @@ A Proof of Concept (PoC) that leverages websockets and HTTP streaming to relay O
 
     The application will be available at: `http://localhost:8000`.
 
-### Development Setup (With Hot-Reload)
+### Development Setup 💻
 
 FastAPI development is made smoother with hot-reloading. I have added a dedicated `Dockerfile.dev` for this.
 
@@ -43,5 +43,3 @@ FastAPI development is made smoother with hot-reloading. I have added a dedicate
     ```
 
     Navigate to `http://localhost:8000`. Any source code modifications will instantly reflect in the application.
-
-Happy coding! 🚀
