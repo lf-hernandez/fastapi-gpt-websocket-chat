@@ -21,16 +21,19 @@ html = """
     <head>
         <title>Chat</title>
         <style>
-            body {
+            html, body {
+                height: 100%;
                 margin: 0;
-                padding: 50px;
+                padding: 0
+            }
+            .root {
                 height: 100%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
             }
-            #messages {
+            .messages {
                 margin-top: 10px;
                 max-width: 30vw;
             }
@@ -54,12 +57,18 @@ html = """
         </style>
     </head>
     <body>
-        <h1>WebSocket Chat</h1>
-        <form action="" onsubmit="sendMessage(event)">
-            <input type="text" id="messageText" autocomplete="off"/>
-            <button>Send</button>
-        </form>
-        <div id='messages'>
+        <div class="root">
+            <div>
+                <h1>WebSocket Chat</h1>
+            </div>
+            <div>
+                <form action="" onsubmit="sendMessage(event)">
+                    <input type="text" id="messageText" autocomplete="off"/>
+                    <button>Send</button>
+                </form>
+            </div>
+            <div class='messages'>
+            </div>
         </div>
     </body>
 </html>
@@ -71,7 +80,7 @@ websocket_js = """
     var ellipsisSpan;
 
     ws.onmessage = function (event) {
-        var messages = document.getElementById('messages');
+        var messages = document.querySelector('.messages');
 
         if (ellipsisSpan) {
             ellipsisSpan.remove();
@@ -85,7 +94,7 @@ websocket_js = """
 
     function sendMessage(event) {
         var input = document.getElementById('messageText');
-        var messages = document.getElementById('messages');
+        var messages = document.querySelector('.messages');
 
         var userMessage = document.createElement('span');
         var userContent = document.createTextNode('You: ' + input.value);
@@ -116,7 +125,7 @@ http_js = """
 
     function sendMessage(event) {
         var input = document.getElementById('messageText');
-        var messages = document.getElementById('messages');
+        var messages = document.querySelector('.messages');
 
         var userMessage = document.createElement('span');
         var userContent = document.createTextNode('You: ' + input.value);
