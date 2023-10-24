@@ -1,4 +1,4 @@
-# 🦦 fastapi-gpt-websocket-chat 🦦
+# 🦦 fastapi-gpt-websocket-http-stream-chat 🦦
 
 A Proof of Concept (PoC) that leverages websockets and HTTP streaming to relay OpenAI's GPT chat completions in real-time using the FastAPI framework. While FastAPI is used here, any API framework supporting websockets and HTTP streaming can be adapted for this purpose.
 
