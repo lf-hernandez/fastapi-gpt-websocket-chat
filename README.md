@@ -2,6 +2,46 @@
 
 A Proof of Concept (PoC) that leverages websockets and HTTP streaming to relay OpenAI's GPT chat completions in real-time using the FastAPI framework. While FastAPI is used here, any API framework supporting websockets and HTTP streaming can be adapted for this purpose.
 
+## Local Development Setup 🛠
+
+If you prefer to set up your local environment without using Docker, you can follow these steps:
+
+1. **Create a Virtual Environment**:
+
+   ```bash
+   python3 -m venv .venv
+   ```
+
+   **Activate the Virtual Environment**:
+
+   - For macOS and Linux:
+
+     ```bash
+     source .venv/bin/activate
+     ```
+
+   - For Windows:
+
+     ```bash
+     .venv\Scripts\activate
+     ```
+
+2. **Install the Dependencies**:
+
+   Ensure you're inside the project directory and your virtual environment is activated.
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run the Application**:
+
+   ```bash
+   uvicorn main:app --reload
+   ```
+
+   This will start the FastAPI application with hot-reloading enabled. You can access the application at `http://localhost:8000`.
+
 ## Docker Deployment 🐳
 
 ### Production Setup 🚀
