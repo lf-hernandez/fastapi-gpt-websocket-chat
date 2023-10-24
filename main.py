@@ -192,25 +192,6 @@ html = html + http_js
 # html = html + websocket_js
 
 
-class ConnectionManager:
-    def __init__(self):
-        self.active_connections: List[WebSocket] = []
-
-    async def connect(self, websocket: WebSocket):
-        await websocket.accept()
-        self.active_connections.append(websocket)
-
-    def disconnect(self, websocket: WebSocket):
-        self.active_connections.remove(websocket)
-
-    async def send_response(self, websocket: WebSocket, message: str):
-        if websocket in self.active_connections:
-            await websocket.send_text(message)
-
-
-manager = ConnectionManager()
-
-
 @app.get("/")
 async def get():
     return HTMLResponse(html)
@@ -256,7 +237,7 @@ async def query_endpoint(data: dict):
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
-    await manager.connect(websocket)
+    await websocket.accept()
     try:
         while True:
             data = await websocket.receive_text()
@@ -284,10 +265,10 @@ async def websocket_endpoint(websocket: WebSocket):
                         )
                         completion_text += chunk_message
                         await asyncio.sleep(0.1)
-                        await manager.send_response(websocket, chunk_message)
+                        await websocket.send_text(chunk_message)
             logging.debug(
                 f"Full response received {elapsed_time:.2f} seconds after request"
             )
             logging.debug(f"Full text received: {completion_text}")
     except WebSocketDisconnect:
-        manager.disconnect(websocket)
+        logging.info("WebSocket disconnected.")
